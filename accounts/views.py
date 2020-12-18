@@ -1,5 +1,12 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
 
 
 def register(request):
-    return render(request, 'accounts/register.html')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = UserCreationForm()
+    return render(request, 'accounts/register.html', {'form': form})
