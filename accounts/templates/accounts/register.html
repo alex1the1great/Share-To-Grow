@@ -11,6 +11,7 @@
 
 {% block content %}
     <div class="container">
+        <br>
         <h1>Register new account</h1>
         <div class="card">
             <form action="{% url 'accounts:register' %}" method='post'>
@@ -18,6 +19,8 @@
                 {{ form.as_p }}
                 <input type="submit" value="Register" class="btn btn-primary">
             </form>
+            <br>
+            <p>Already have an account? <a href="{% url 'accounts:login' %}">Login here.</a></p>
         </div>
     </div>
 {% endblock content %}

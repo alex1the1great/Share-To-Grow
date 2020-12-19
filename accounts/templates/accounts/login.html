@@ -1,0 +1,35 @@
+{% extends 'global_base.html' %}
+{% load static %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'accounts/style.css' %}">
+{% endblock css_link %}
+
+{% block title %}
+    Login to ShareToGrow.
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <h1>Login</h1>
+        {# message #}
+        {% if messages %}
+            {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {# message. end #}
+        <div class="card">
+            <form action="{% url 'accounts:login' %}" method='post'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Login" class="btn btn-primary">
+            </form>
+            <br>
+            <p>Don't have an account? <a href="{% url 'accounts:register' %}">Register here.</a></p>
+        </div>
+    </div>
+{% endblock content %}
