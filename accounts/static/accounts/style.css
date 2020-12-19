@@ -14,3 +14,7 @@ body {
 .errorlist li {
     color: red;
 }
+
+.logout {
+    border: none;
+}
