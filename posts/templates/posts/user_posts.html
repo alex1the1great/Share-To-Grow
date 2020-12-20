@@ -12,8 +12,10 @@
 {% block content %}
     {% if user_posts %}
         <div class="container">
+            <br>
+            <p class="text-primary text-bold">Posts by <strong class='text-bold'>{{ username }}</strong></p>
             {% for post in user_posts %}
-                <br>
+
                 <div class="card">
                     <div class="card-header">
 

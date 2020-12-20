@@ -14,4 +14,5 @@ class PostView(ListView):
 
 def user_posts(request, pk):
     posts = Post.objects.filter(author_id=pk).order_by('-pub_date')
-    return render(request, 'posts/user_posts.html', {'user_posts': posts})
+    username = User.objects.get(pk=pk)
+    return render(request, 'posts/user_posts.html', {'user_posts': posts, 'username': username})
