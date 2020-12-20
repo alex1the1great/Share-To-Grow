@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import post_index
+from .views import PostView
 
 app_name = 'posts'
 
 urlpatterns = [
-    path('', post_index, name='index'),
+    path('', PostView.as_view(), name='index'),
 ]

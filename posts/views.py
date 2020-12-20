@@ -1,5 +1,10 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+
+from .models import Post
 
 
-def post_index(request):
-    return render(request, 'posts/index.html')
+class PostView(ListView):
+    template_name = 'posts/index.html'
+
+    def get_queryset(self):
+        return Post.objects.order_by('-pub_date')[:10]
