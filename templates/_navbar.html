@@ -10,7 +10,7 @@
             <form action="{% url 'accounts:logout' %}" method='post'>
                 {% csrf_token %}
                 <li class="nav-item">
-                <input type='submit' class="logout" href="{% url 'accounts:logout' %}" value="Logout">
+                <input type='submit' class="logout" href="{% url 'accounts:logout' %}" value="Logout" >
             </li>
             </form>
         {% else %}
