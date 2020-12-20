@@ -10,9 +10,9 @@
 {% endblock title %}
 
 {% block content %}
-    {% if post_list %}
+    {% if user_posts %}
         <div class="container">
-            {% for post in post_list %}
+            {% for post in user_posts %}
                 <br>
                 <div class="card">
                     <div class="card-header">
@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <p class="date-font-size">
                         {{ post.pub_date | date:'l, F j, Y.' }}
-                            <a href="{% url 'posts:user_posts' post.author_id %}" class="text-decoration-none"><strong class='fw-bold'>{{ post.author }}</strong></a>
+                            <strong class='fw-bold'>{{ post.author }}</strong>
                         </p>
                         <div class="blockquote mb-0">
                             <p>{{ post.body }}</p>
