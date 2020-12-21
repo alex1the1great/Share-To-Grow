@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 
 from .models import Post
+from .forms import CreatePostForm
 
 
 class PostView(ListView):
@@ -16,3 +17,11 @@ def user_posts(request, pk):
     posts = Post.objects.filter(author_id=pk).order_by('-pub_date')
     username = User.objects.get(pk=pk)
     return render(request, 'posts/user_posts.html', {'user_posts': posts, 'username': username})
+
+
+def create_post(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = CreatePostForm()
+    return render(request, 'posts/create_post.html', {'form': form})
