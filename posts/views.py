@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .forms import CreatePostForm
@@ -19,6 +20,7 @@ def user_posts(request, pk):
     return render(request, 'posts/user_posts.html', {'user_posts': posts, 'username': username})
 
 
+@login_required
 def create_post(request):
     if request.method == 'POST':
         form = CreatePostForm(request.POST)

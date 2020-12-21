@@ -10,6 +10,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'posts:create' %}">New Post</a>
                 </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'posts:create' %}">{{ request.user }}</a>
+
+              </li>
             <form action="{% url 'accounts:logout' %}" method='post'>
                 {% csrf_token %}
                 <li class="nav-item">
