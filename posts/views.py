@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
 from .models import Post
@@ -21,7 +21,12 @@ def user_posts(request, pk):
 
 def create_post(request):
     if request.method == 'POST':
-        pass
+        form = CreatePostForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            return redirect('posts:index')
     else:
         form = CreatePostForm()
     return render(request, 'posts/create_post.html', {'form': form})
