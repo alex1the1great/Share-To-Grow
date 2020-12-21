@@ -30,6 +30,7 @@
                         {{ post.title }}
                         {% if request.user.is_authenticated and request.user == post.author%}
                             <a href={% url 'posts:edit' post.id %} class="edit-link">edit</a>
+                            <a href={% url 'posts:delete' post.id %} class="edit-link">delete</a>
                         {% endif %}
                     </div>
                     <div class="card-body">

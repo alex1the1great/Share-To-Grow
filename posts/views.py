@@ -47,3 +47,10 @@ def edit_post(request, pk):
     else:
         form = CreatePostForm(instance=post)
     return render(request, 'posts/edit_post.html', {'form': form, 'post_id': pk})
+
+
+@login_required
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('posts:index')
