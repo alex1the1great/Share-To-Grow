@@ -1,7 +1,8 @@
 from django.views.generic import ListView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Post
 from .forms import CreatePostForm
@@ -32,3 +33,17 @@ def create_post(request):
     else:
         form = CreatePostForm()
     return render(request, 'posts/create_post.html', {'form': form})
+
+
+@login_required
+def edit_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Post editied successfully.')
+            return redirect('posts:index')
+    else:
+        form = CreatePostForm(instance=post)
+    return render(request, 'posts/edit_post.html', {'form': form, 'post_id': pk})
